@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Threat Analysis — PowerShell Loader</title>
+<title>bombay stealer analysis</title>
 <style>
 :root{--green:rgba(38,205,103,.72);--white:#e5e9e6}
 *{box-sizing:border-box}body{margin:0;background:#000;color:var(--white);font:14px/1.75 Arial,Helvetica,sans-serif}.root{min-height:100vh;background:#000}.wrap{width:min(760px,calc(100% - 24px));margin:16px auto;padding:20px 22px;background:#000;border:1px solid var(--green)}a{color:#a5e9bd}.top{display:none}.brand,.mark,nav{display:none}.hero{display:block;padding:0 0 14px;border-bottom:1px solid rgba(38,205,103,.3)}.eyebrow{display:none}.hero h1{display:none}.hero p,.status p,.card p,.section-intro{color:#d8ded9}.status{margin-top:10px;padding:0;border:0}.pill{display:none}.dot{display:none}.status strong{display:none}.stats{display:none}main{padding-bottom:10px}.section{margin:18px 0}.section-head{display:block;margin-bottom:5px}.section h2{font-size:14px;font-weight:400;margin:0 0 5px;color:#9eddb3}.section-intro{margin:0 0 8px;font-size:13px}.grid2{display:block}.card{border:0;background:transparent;padding:0;margin:8px 0}.card h3{font-size:14px;font-weight:400;margin:10px 0 3px;color:#dfe5e0}.tag{display:none}.steps{display:block}.step{display:block;padding:0 0 8px;margin:0 0 8px;border-bottom:1px solid rgba(38,205,103,.16)}.stepnum{display:none}.step h3{font-size:14px;font-weight:400;color:#dfe5e0;margin:5px 0 0}.step p{color:#d8ded9;margin:0}.ioclist{display:block}.ioc{display:block;padding:6px 0;border-bottom:1px solid rgba(38,205,103,.16)}.ioc .kind{display:inline;color:#a5e9bd;font-size:13px;margin-right:6px}.ioc code{overflow-wrap:anywhere;word-break:break-word}.copy{display:none}.callout{border:0;border-left:1px solid rgba(38,205,103,.5);padding:5px 10px;background:transparent;color:#d8ded9}.callout strong{font-weight:400;color:#dfe5e0}.risk{border-left-color:rgba(38,205,103,.5);background:transparent}.checks{padding-left:18px}.checks li{color:#d8ded9;padding:1px 0}.checks strong{font-weight:400;color:var(--white)}.tabs{display:none}.tabcontent{display:block!important;margin:8px 0}.footer{border-top:1px solid rgba(38,205,103,.3);padding:8px 0 0;color:#aeb8b0;font-size:12px}.footerin{display:block}.labelchip{display:none}@media(max-width:600px){.wrap{width:calc(100% - 12px);margin:6px auto;padding:14px}.section{margin:14px 0}}
@@ -12,7 +12,7 @@
 <body><div class="root">
 <header class="top"></header>
 <div class="wrap">
-<section class="hero" id="summary"><div><p>Static analysis of a suspicious PowerShell command. The visible logic downloads and extracts an archive, configures logon persistence, and launches a VBScript wrapper intended to start a background workload.</p></div><aside class="status"><p>Observed pool and worker strings are consistent with cryptocurrency-mining activity. The downloaded payload has not been retrieved or independently verified in this analysis.</p></aside></section>
+<section class="hero" id="summary"><div><p>analysis of Bombay Stealer. command. The visible logic downloads and extracts an archive, configures logon persistence, and launches a VBScript wrapper intended to start a background workload.</p></div><aside class="status"><p>Observed pool and worker strings are consistent with cryptocurrency-mining activity. The downloaded payload has not been retrieved or independently verified in this analysis.</p></aside></section>
 <div class="stats"><div class="stat"><div class="num">Hidden</div><div class="label">PowerShell window</div></div><div class="stat"><div class="num">GitHub</div><div class="label">Remote ZIP source</div></div><div class="stat"><div class="num">Run key</div><div class="label">User logon persistence</div></div><div class="stat"><div class="num">XMRig-like</div><div class="label">Miner-related strings</div></div></div>
 <main>
 <section class="section" id="behavior"><div class="section-head"><div><h2>Execution flow</h2><p class="section-intro">Behavior inferred from the supplied command text, not from running it.</p></div><span class="labelchip">Static analysis</span></div><div class="card steps">
@@ -39,6 +39,5 @@
 <footer class="footer"><div class="footerin">Prepared from supplied command text. This is static triage, not confirmed attribution.</div></footer>
 </div></div>
 <script>
-// Plain document layout; no interactive controls.
 </script>
 </body></html>
