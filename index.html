@@ -1,43 +1,529 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>bombay stealer analysis</title>
-<style>
-:root{--green:rgba(38,205,103,.72);--white:#e5e9e6}
-*{box-sizing:border-box}body{margin:0;background:#000;color:var(--white);font:14px/1.75 Arial,Helvetica,sans-serif}.root{min-height:100vh;background:#000}.wrap{width:min(760px,calc(100% - 24px));margin:16px auto;padding:20px 22px;background:#000;border:1px solid var(--green)}a{color:#a5e9bd}.top{display:none}.brand,.mark,nav{display:none}.hero{display:block;padding:0 0 14px;border-bottom:1px solid rgba(38,205,103,.3)}.eyebrow{display:none}.hero h1{display:none}.hero p,.status p,.card p,.section-intro{color:#d8ded9}.status{margin-top:10px;padding:0;border:0}.pill{display:none}.dot{display:none}.status strong{display:none}.stats{display:none}main{padding-bottom:10px}.section{margin:18px 0}.section-head{display:block;margin-bottom:5px}.section h2{font-size:14px;font-weight:400;margin:0 0 5px;color:#9eddb3}.section-intro{margin:0 0 8px;font-size:13px}.grid2{display:block}.card{border:0;background:transparent;padding:0;margin:8px 0}.card h3{font-size:14px;font-weight:400;margin:10px 0 3px;color:#dfe5e0}.tag{display:none}.steps{display:block}.step{display:block;padding:0 0 8px;margin:0 0 8px;border-bottom:1px solid rgba(38,205,103,.16)}.stepnum{display:none}.step h3{font-size:14px;font-weight:400;color:#dfe5e0;margin:5px 0 0}.step p{color:#d8ded9;margin:0}.ioclist{display:block}.ioc{display:block;padding:6px 0;border-bottom:1px solid rgba(38,205,103,.16)}.ioc .kind{display:inline;color:#a5e9bd;font-size:13px;margin-right:6px}.ioc code{overflow-wrap:anywhere;word-break:break-word}.copy{display:none}.callout{border:0;border-left:1px solid rgba(38,205,103,.5);padding:5px 10px;background:transparent;color:#d8ded9}.callout strong{font-weight:400;color:#dfe5e0}.risk{border-left-color:rgba(38,205,103,.5);background:transparent}.checks{padding-left:18px}.checks li{color:#d8ded9;padding:1px 0}.checks strong{font-weight:400;color:var(--white)}.tabs{display:none}.tabcontent{display:block!important;margin:8px 0}.footer{border-top:1px solid rgba(38,205,103,.3);padding:8px 0 0;color:#aeb8b0;font-size:12px}.footerin{display:block}.labelchip{display:none}@media(max-width:600px){.wrap{width:calc(100% - 12px);margin:6px auto;padding:14px}.section{margin:14px 0}}
-</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>bombay stealer analysis</title>
+    <style>
+        :root {
+            --green: rgba(38, 205, 103, .72);
+            --white: #e5e9e6
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            background: #000;
+            color: var(--white);
+            font: 14px/1.75 Arial, Helvetica, sans-serif
+        }
+
+        .root {
+            min-height: 100vh;
+            background: #000
+        }
+
+        .wrap {
+            width: min(760px, calc(100% - 24px));
+            margin: 16px auto;
+            padding: 20px 22px;
+            background: #000;
+            border: 1px solid var(--green)
+        }
+
+        a {
+            color: #a5e9bd
+        }
+
+        .top {
+            display: none
+        }
+
+        .brand,
+        .mark,
+        nav {
+            display: none
+        }
+
+        .hero {
+            display: block;
+            padding: 0 0 14px;
+            border-bottom: 1px solid rgba(38, 205, 103, .3)
+        }
+
+        .eyebrow {
+            display: none
+        }
+
+        .hero h1 {
+            display: none
+        }
+
+        .hero p,
+        .status p,
+        .card p,
+        .section-intro {
+            color: #d8ded9
+        }
+
+        .status {
+            margin-top: 10px;
+            padding: 0;
+            border: 0
+        }
+
+        .pill {
+            display: none
+        }
+
+        .dot {
+            display: none
+        }
+
+        .status strong {
+            display: none
+        }
+
+        .stats {
+            display: none
+        }
+
+        main {
+            padding-bottom: 10px
+        }
+
+        .section {
+            margin: 18px 0
+        }
+
+        .section-head {
+            display: block;
+            margin-bottom: 5px
+        }
+
+        .section h2 {
+            font-size: 14px;
+            font-weight: 400;
+            margin: 0 0 5px;
+            color: #9eddb3
+        }
+
+        .section-intro {
+            margin: 0 0 8px;
+            font-size: 13px
+        }
+
+        .grid2 {
+            display: block
+        }
+
+        .card {
+            border: 0;
+            background: transparent;
+            padding: 0;
+            margin: 8px 0
+        }
+
+        .card h3 {
+            font-size: 14px;
+            font-weight: 400;
+            margin: 10px 0 3px;
+            color: #dfe5e0
+        }
+
+        .tag {
+            display: none
+        }
+
+        .steps {
+            display: block
+        }
+
+        .step {
+            display: block;
+            padding: 0 0 8px;
+            margin: 0 0 8px;
+            border-bottom: 1px solid rgba(38, 205, 103, .16)
+        }
+
+        .stepnum {
+            display: none
+        }
+
+        .step h3 {
+            font-size: 14px;
+            font-weight: 400;
+            color: #dfe5e0;
+            margin: 5px 0 0
+        }
+
+        .step p {
+            color: #d8ded9;
+            margin: 0
+        }
+
+        .ioclist {
+            display: block
+        }
+
+        .ioc {
+            display: block;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(38, 205, 103, .16)
+        }
+
+        .ioc .kind {
+            display: inline;
+            color: #a5e9bd;
+            font-size: 13px;
+            margin-right: 6px
+        }
+
+        .ioc code {
+            overflow-wrap: anywhere;
+            word-break: break-word
+        }
+
+        .copy {
+            display: none
+        }
+
+        .callout {
+            border: 0;
+            border-left: 1px solid rgba(38, 205, 103, .5);
+            padding: 5px 10px;
+            background: transparent;
+            color: #d8ded9
+        }
+
+        .callout strong {
+            font-weight: 400;
+            color: #dfe5e0
+        }
+
+        .risk {
+            border-left-color: rgba(38, 205, 103, .5);
+            background: transparent
+        }
+
+        .checks {
+            padding-left: 18px
+        }
+
+        .checks li {
+            color: #d8ded9;
+            padding: 1px 0
+        }
+
+        .checks strong {
+            font-weight: 400;
+            color: var(--white)
+        }
+
+        .tabs {
+            display: none
+        }
+
+        .tabcontent {
+            display: block !important;
+            margin: 8px 0
+        }
+
+        .footer {
+            border-top: 1px solid rgba(38, 205, 103, .3);
+            padding: 8px 0 0;
+            color: #aeb8b0;
+            font-size: 12px
+        }
+
+        .footerin {
+            display: block
+        }
+
+        .labelchip {
+            display: none
+        }
+
+        @media(max-width:600px) {
+            .wrap {
+                width: calc(100% - 12px);
+                margin: 6px auto;
+                padding: 14px
+            }
+
+            .section {
+                margin: 14px 0
+            }
+        }
+    </style>
 </head>
-<body><div class="root">
-<header class="top"></header>
-<div class="wrap">
-<section class="hero" id="summary"><div><p>analysis of Bombay Stealer. command. The visible logic downloads and extracts an archive, configures logon persistence, and launches a VBScript wrapper intended to start a background workload.</p></div><aside class="status"><p>Observed pool and worker strings are consistent with cryptocurrency-mining activity. The downloaded payload has not been retrieved or independently verified in this analysis.</p></aside></section>
-<div class="stats"><div class="stat"><div class="num">Hidden</div><div class="label">PowerShell window</div></div><div class="stat"><div class="num">GitHub</div><div class="label">Remote ZIP source</div></div><div class="stat"><div class="num">Run key</div><div class="label">User logon persistence</div></div><div class="stat"><div class="num">XMRig-like</div><div class="label">Miner-related strings</div></div></div>
-<main>
-<section class="section" id="behavior"><div class="section-head"><div><h2>Execution flow</h2><p class="section-intro">Behavior inferred from the supplied command text, not from running it.</p></div><span class="labelchip">Static analysis</span></div><div class="card steps">
-<div class="step"><div class="stepnum">01</div><div><h3>Conceal the PowerShell session</h3><p><code>-WindowStyle Hidden</code>, <code>-NonInteractive</code>, and <code>-ExecutionPolicy Bypass</code> reduce visible prompts and bypass the usual execution-policy gate. These flags are suspicious in combination, but not malicious in isolation.</p></div></div>
-<div class="step"><div class="stepnum">02</div><div><h3>Prepare network compatibility</h3><p>Attempts to select supported TLS versions and temporarily accept any server certificate. The certificate-validation override weakens HTTPS identity checks.</p></div></div>
-<div class="step"><div class="stepnum">03</div><div><h3>Download and unpack an archive</h3><p>Retrieves <code>readme.zip</code> from a GitHub raw-content URL and extracts it under the current user's roaming application data in a directory named <code>Microsoft\Edge</code>.</p></div></div>
-<div class="step"><div class="stepnum">04</div><div><h3>Establish logon persistence</h3><p>Writes a <code>SystemSettingsBroker</code> value under <code>HKCU\Software\Microsoft\Windows\CurrentVersion\Run</code>. It also interacts with the Explorer <code>StartupApproved\Run</code> key.</p></div></div>
-<div class="step"><div class="stepnum">05</div><div><h3>Launch a script wrapper</h3><p>Writes a VBScript file that checks for a matching process and starts a command line using a configured pool URL and worker argument. The script later invokes the VBScript through <code>wscript.exe</code>.</p></div></div>
-<div class="step"><div class="stepnum">06</div><div><h3>Reduce installation artifacts</h3><p>Removes selected README/archive and batch files during the installation path. Cleanup can complicate casual inspection, though it does not prove that all traces are erased.</p></div></div>
-</div></section>
-<section class="section" id="indicators"><div class="section-head"><div><h2>Indicators of compromise</h2><p class="section-intro">Extracted strings from the supplied command. Treat these as leads, not proof of a live infection.</p></div></div><div class="card"><div class="ioclist">
-<div class="ioc"><div class="kind">Download URL</div><code>https://github.com/digitalforensiker/myreadme/raw/refs/heads/main/readme.zip</code><button class="copy" data-copy="https://github.com/digitalforensiker/myreadme/raw/refs/heads/main/readme.zip">Copy</button></div>
-<div class="ioc"><div class="kind">Pool endpoint</div><code>stratum+tcp://c2.doxbin.cy:3333</code><button class="copy" data-copy="stratum+tcp://c2.doxbin.cy:3333">Copy</button></div>
-<div class="ioc"><div class="kind">Worker argument</div><code>x.xmrrig</code><button class="copy" data-copy="x.xmrrig">Copy</button></div>
-<div class="ioc"><div class="kind">Run value name</div><code>SystemSettingsBroker</code><button class="copy" data-copy="SystemSettingsBroker">Copy</button></div>
-<div class="ioc"><div class="kind">Run registry path</div><code>HKCU\Software\Microsoft\Windows\CurrentVersion\Run</code><button class="copy" data-copy="HKCU\Software\Microsoft\Windows\CurrentVersion\Run">Copy</button></div>
-<div class="ioc"><div class="kind">Target directory</div><code>%APPDATA%\Microsoft\Edge</code><button class="copy" data-copy="%APPDATA%\Microsoft\Edge">Copy</button></div>
-<div class="ioc"><div class="kind">Likely launcher</div><code>wscript.exe</code><button class="copy" data-copy="wscript.exe">Copy</button></div>
-</div></div></section>
-<section class="section"><div class="section-head"><div><h2>Analyst notes</h2><p class="section-intro">What the script suggests, and what remains unconfirmed.</p></div></div><div class="grid2"><article class="card"><div class="tag">Observed in command</div><h3>Directly supported</h3><ul class="checks"><li>Encoded PowerShell execution with a hidden window.</li><li>Remote archive download and ZIP extraction.</li><li>Registry Run-key persistence configuration.</li><li>VBScript launcher generation and execution.</li><li>Pool URL and worker-like command-line arguments.</li></ul></article><article class="card"><div class="tag">Requires payload analysis</div><h3>Not yet established</h3><ul class="checks"><li>Exact executable and its cryptographic hash.</li><li>Whether the archive currently exists or is unchanged.</li><li>Whether the pool endpoint is reachable or controlled by an attacker.</li><li>Whether credentials, browser data, or other sensitive information are stolen.</li><li>Whether the script completed successfully on any host.</li></ul></article></div><div class="callout risk" style="margin-top:14px"><strong>Terminology caution:</strong> The supplied script looks primarily like a downloader/installer for a miner, based on the pool and worker strings. Those strings alone do not establish that it is an infostealer. Analyze the downloaded payload in an isolated lab to determine whether credential theft or data exfiltration is also present.</div></section>
-<section class="section" id="response"><div class="section-head"><div><h2>Defensive response</h2><p class="section-intro">Use these steps if the command may have been executed on a real endpoint.</p></div></div><div class="grid2"><article class="card"><h3>Immediate containment</h3><ul class="checks"><li>Isolate the affected endpoint from the network if compromise is suspected.</li><li>Preserve the original command, timestamps, PowerShell logs, and any downloaded archive for analysis.</li><li>Run Microsoft Defender Offline and a full scan, following organizational incident-response policy.</li><li>If this is an enterprise host, notify the security team before deleting artifacts.</li></ul></article><article class="card"><h3>Hunt and verify</h3><ul class="checks"><li>Review the user's Run and StartupApproved registry keys for the named value.</li><li>Inspect the referenced application-data directory and VBScript contents.</li><li>Correlate process creation for <code>powershell.exe</code>, <code>wscript.exe</code>, and any child processes.</li><li>Review outbound connections to the listed pool endpoint and the download domain.</li><li>Search endpoint telemetry for the exact IOC strings and nearby execution events.</li></ul></article></div><div class="callout" style="margin-top:14px"><strong>Evidence handling:</strong> Do not execute the payload on a normal workstation. If you need dynamic analysis, use a disposable, isolated virtual machine with controlled networking and snapshots. Do not rely on deleting the Run value alone as proof of remediation.</div></section>
-<section class="section" id="confidence"><div class="section-head"><div><h2>Assessment and confidence</h2></div></div><div class="card"><div class="tabs" role="tablist"><button class="tab" role="tab" aria-selected="true" data-tab="assessment">Assessment</button><button class="tab" role="tab" aria-selected="false" data-tab="method">Methodology</button><button class="tab" role="tab" aria-selected="false" data-tab="publish">GitHub Pages</button></div><div class="tabcontent active" id="assessment"><h3>Current conclusion</h3><p style="color:var(--muted)">High confidence that the command implements a hidden downloader/installer with logon persistence. Moderate confidence that the intended workload is cryptocurrency mining due to the Stratum endpoint and XMRig-like worker string. Low confidence regarding any infostealer capability until the ZIP and its contents are examined.</p></div><div class="tabcontent" id="method"><h3>Static triage boundaries</h3><p style="color:var(--muted)">This page documents behavior visible in the decoded PowerShell supplied for review. It does not claim the URL was fetched, files were executed, the host was infected, or network infrastructure was validated. Confirm each finding against a preserved sample, hashes, sandbox telemetry, and trusted threat-intelligence sources before operational use.</p></div><div class="tabcontent" id="publish"><h3>Publish this report with GitHub Pages</h3><ol class="checks"><li>Create a new GitHub repository, for example <code>powershell-loader-analysis</code>.</li><li>Save this page as <code>index.html</code> in the repository's root directory.</li><li>Open repository <strong>Settings → Pages</strong>.</li><li>Under build and deployment, choose <strong>Deploy from a branch</strong>, then select the main branch and <code>/(root)</code>.</li><li>Save and wait for GitHub Pages to publish the site. Review repository visibility before uploading sensitive or internal-only incident details.</li></ol><p style="color:var(--muted);margin-top:10px">This is a static HTML report and does not require a build framework.</p></div></div></section>
-</main>
-<footer class="footer"><div class="footerin">Prepared from supplied command text. This is static triage, not confirmed attribution.</div></footer>
-</div></div>
-<script>
-</script>
-</body></html>
+
+<body>
+    <div class="root">
+        <header class="top"></header>
+        <div class="wrap">
+            <section class="hero" id="summary">
+                <div>
+                    <p>analysis of Bombay Stealer. command. The visible logic downloads and extracts an archive,
+                        configures logon persistence, and launches a VBScript wrapper intended to start a background
+                        workload.</p>
+                </div>
+                <aside class="status">
+                    <p>Observed pool and worker strings are consistent with cryptocurrency-mining activity. The
+                        downloaded payload has not been retrieved or independently verified in this analysis.</p>
+                </aside>
+            </section>
+            <div class="stats">
+                <div class="stat">
+                    <div class="num">Hidden</div>
+                    <div class="label">PowerShell window</div>
+                </div>
+                <div class="stat">
+                    <div class="num">GitHub</div>
+                    <div class="label">Remote ZIP source</div>
+                </div>
+                <div class="stat">
+                    <div class="num">Run key</div>
+                    <div class="label">User logon persistence</div>
+                </div>
+                <div class="stat">
+                    <div class="num">XMRig-like</div>
+                    <div class="label">Miner-related strings</div>
+                </div>
+            </div>
+            <main>
+                <section class="section" id="behavior">
+                    <div class="section-head">
+                        <div>
+                            <h2>Execution flow</h2>
+                            <p class="section-intro">Behavior inferred from the supplied command text, not from running
+                                it.</p>
+                        </div><span class="labelchip">Static analysis</span>
+                    </div>
+                    <div class="card steps">
+                        <div class="step">
+                            <div class="stepnum">01</div>
+                            <div>
+                                <h3>Conceal the PowerShell session</h3>
+                                <p><code>-WindowStyle Hidden</code>, <code>-NonInteractive</code>, and
+                                    <code>-ExecutionPolicy Bypass</code> reduce visible prompts and bypass the usual
+                                    execution-policy gate. These flags are suspicious in combination, but not malicious
+                                    in isolation.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="stepnum">02</div>
+                            <div>
+                                <h3>Prepare network compatibility</h3>
+                                <p>Attempts to select supported TLS versions and temporarily accept any server
+                                    certificate. The certificate-validation override weakens HTTPS identity checks.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="stepnum">03</div>
+                            <div>
+                                <h3>Download and unpack an archive</h3>
+                                <p>Retrieves <code>readme.zip</code> from a GitHub raw-content URL and extracts it under
+                                    the current user's roaming application data in a directory named
+                                    <code>Microsoft\Edge</code>.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="stepnum">04</div>
+                            <div>
+                                <h3>Establish logon persistence</h3>
+                                <p>Writes a <code>SystemSettingsBroker</code> value under
+                                    <code>HKCU\Software\Microsoft\Windows\CurrentVersion\Run</code>. It also interacts
+                                    with the Explorer <code>StartupApproved\Run</code> key.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="stepnum">05</div>
+                            <div>
+                                <h3>Launch a script wrapper</h3>
+                                <p>Writes a VBScript file that checks for a matching process and starts a command line
+                                    using a configured pool URL and worker argument. The script later invokes the
+                                    VBScript through <code>wscript.exe</code>.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="stepnum">06</div>
+                            <div>
+                                <h3>Reduce installation artifacts</h3>
+                                <p>Removes selected README/archive and batch files during the installation path. Cleanup
+                                    can complicate casual inspection, though it does not prove that all traces are
+                                    erased.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="section" id="indicators">
+                    <div class="section-head">
+                        <div>
+                            <h2>Indicators of compromise</h2>
+                            <p class="section-intro">Extracted strings from the supplied command. Treat these as leads,
+                                not proof of a live infection.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="ioclist">
+                            <div class="ioc">
+                                <div class="kind">Download URL</div>
+                                <code>https://github.com/digitalforensiker/myreadme/raw/refs/heads/main/readme.zip</code><button
+                                    class="copy"
+                                    data-copy="https://github.com/digitalforensiker/myreadme/raw/refs/heads/main/readme.zip">Copy</button>
+                            </div>
+                            <div class="ioc">
+                                <div class="kind">Pool endpoint</div><code>stratum+tcp://c2.doxbin.cy:3333</code><button
+                                    class="copy" data-copy="stratum+tcp://c2.doxbin.cy:3333">Copy</button>
+                            </div>
+                            <div class="ioc">
+                                <div class="kind">Worker argument</div><code>x.xmrrig</code><button class="copy"
+                                    data-copy="x.xmrrig">Copy</button>
+                            </div>
+                            <div class="ioc">
+                                <div class="kind">Run value name</div><code>SystemSettingsBroker</code><button
+                                    class="copy" data-copy="SystemSettingsBroker">Copy</button>
+                            </div>
+                            <div class="ioc">
+                                <div class="kind">Run registry path</div>
+                                <code>HKCU\Software\Microsoft\Windows\CurrentVersion\Run</code><button class="copy"
+                                    data-copy="HKCU\Software\Microsoft\Windows\CurrentVersion\Run">Copy</button>
+                            </div>
+                            <div class="ioc">
+                                <div class="kind">Target directory</div><code>%APPDATA%\Microsoft\Edge</code><button
+                                    class="copy" data-copy="%APPDATA%\Microsoft\Edge">Copy</button>
+                            </div>
+                            <div class="ioc">
+                                <div class="kind">Likely launcher</div><code>wscript.exe</code><button class="copy"
+                                    data-copy="wscript.exe">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="section">
+                    <div class="section-head">
+                        <div>
+                            <h2>Analyst notes</h2>
+                            <p class="section-intro">What the script suggests, and what remains unconfirmed.</p>
+                        </div>
+                    </div>
+                    <div class="grid2">
+                        <article class="card">
+                            <div class="tag">Observed in command</div>
+                            <h3>Directly supported</h3>
+                            <ul class="checks">
+                                <li>Encoded PowerShell execution with a hidden window.</li>
+                                <li>Remote archive download and ZIP extraction.</li>
+                                <li>Registry Run-key persistence configuration.</li>
+                                <li>VBScript launcher generation and execution.</li>
+                                <li>Pool URL and worker-like command-line arguments.</li>
+                            </ul>
+                        </article>
+                        <article class="card">
+                            <div class="tag">Requires payload analysis</div>
+                            <h3>Not yet established</h3>
+                            <ul class="checks">
+                                <li>Exact executable and its cryptographic hash.</li>
+                                <li>Whether the archive currently exists or is unchanged.</li>
+                                <li>Whether the pool endpoint is reachable or controlled by an attacker.</li>
+                                <li>Whether credentials, browser data, or other sensitive information are stolen.</li>
+                                <li>Whether the script completed successfully on any host.</li>
+                            </ul>
+                        </article>
+                    </div>
+                    <div class="callout risk" style="margin-top:14px"><strong>Terminology caution:</strong> The supplied
+                        script looks primarily like a downloader/installer for a miner, based on the pool and worker
+                        strings. Those strings alone do not establish that it is an infostealer. Analyze the downloaded
+                        payload in an isolated lab to determine whether credential theft or data exfiltration is also
+                        present.</div>
+                </section>
+                <section class="section" id="response">
+                    <div class="section-head">
+                        <div>
+                            <h2>Defensive response</h2>
+                            <p class="section-intro">Use these steps if the command may have been executed on a real
+                                endpoint.</p>
+                        </div>
+                    </div>
+                    <div class="grid2">
+                        <article class="card">
+                            <h3>Immediate containment</h3>
+                            <ul class="checks">
+                                <li>Isolate the affected endpoint from the network if compromise is suspected.</li>
+                                <li>Preserve the original command, timestamps, PowerShell logs, and any downloaded
+                                    archive for analysis.</li>
+                                <li>Run Microsoft Defender Offline and a full scan, following organizational
+                                    incident-response policy.</li>
+                                <li>If this is an enterprise host, notify the security team before deleting artifacts.
+                                </li>
+                            </ul>
+                        </article>
+                        <article class="card">
+                            <h3>Hunt and verify</h3>
+                            <ul class="checks">
+                                <li>Review the user's Run and StartupApproved registry keys for the named value.</li>
+                                <li>Inspect the referenced application-data directory and VBScript contents.</li>
+                                <li>Correlate process creation for <code>powershell.exe</code>,
+                                    <code>wscript.exe</code>, and any child processes.
+                                </li>
+                                <li>Review outbound connections to the listed pool endpoint and the download domain.
+                                </li>
+                                <li>Search endpoint telemetry for the exact IOC strings and nearby execution events.
+                                </li>
+                            </ul>
+                        </article>
+                    </div>
+                    <div class="callout" style="margin-top:14px"><strong>Evidence handling:</strong> Do not execute the
+                        payload on a normal workstation. If you need dynamic analysis, use a disposable, isolated
+                        virtual machine with controlled networking and snapshots. Do not rely on deleting the Run value
+                        alone as proof of remediation.</div>
+                </section>
+                <section class="section" id="confidence">
+                    <div class="section-head">
+                        <div>
+                            <h2>Assessment and confidence</h2>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="tabs" role="tablist"><button class="tab" role="tab" aria-selected="true"
+                                data-tab="assessment">Assessment</button><button class="tab" role="tab"
+                                aria-selected="false" data-tab="method">Methodology</button><button class="tab"
+                                role="tab" aria-selected="false" data-tab="publish">GitHub Pages</button></div>
+                        <div class="tabcontent active" id="assessment">
+                            <h3>Current conclusion</h3>
+                            <p style="color:var(--muted)">High confidence that the command implements a hidden
+                                downloader/installer with logon persistence. Moderate confidence that the intended
+                                workload is cryptocurrency mining due to the Stratum endpoint and XMRig-like worker
+                                string. Low confidence regarding any infostealer capability until the ZIP and its
+                                contents are examined.</p>
+                        </div>
+                        <div class="tabcontent" id="method">
+                            <h3>Static triage boundaries</h3>
+                            <p style="color:var(--muted)">This page documents behavior visible in the decoded PowerShell
+                                supplied for review. It does not claim the URL was fetched, files were executed, the
+                                host was infected, or network infrastructure was validated. Confirm each finding against
+                                a preserved sample, hashes, sandbox telemetry, and trusted threat-intelligence sources
+                                before operational use.</p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+            <footer class="footer">
+                <div class="footerin">Prepared from supplied command text. This is static triage, not confirmed
+                    attribution.</div>
+            </footer>
+        </div>
+    </div>
+    <script>
+    </script>
+</body>
+
+</html>
